@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TasksController } from './tasks/tasks.controller';
+import { ColumnsController } from './columns/columns.controller';
 
 @Module({
   imports: [
@@ -10,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
   ],
-  controllers: [],
+  controllers: [TasksController, ColumnsController],
   providers: [],
 })
 export class AppModule {}

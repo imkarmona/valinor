@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TasksController } from './tasks/tasks.controller';
-import { ColumnsController } from './columns/columns.controller';
+import { TasksController } from './Controllers/tasks/tasks.controller';
+import { ColumnsController } from './Controllers/columns/columns.controller';
 
 @Module({
   imports: [

@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
-export class TaskDto {
+export class TasksDto {
   @IsString()
   @IsNotEmpty()
   title: string;
@@ -11,5 +11,5 @@ export class TaskDto {
 
   @IsUUID()
   @IsOptional()
-  columnId?: string;
+  columnId?: number;
 }

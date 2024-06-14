@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 
-export class ColumnDto {
+export class ColumnsDto {
   @IsString()
   @IsNotEmpty()
   title: string;

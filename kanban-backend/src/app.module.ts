@@ -7,8 +7,8 @@ import { ColumnsController } from './Controllers/columns/columns.controller';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: '',
-      entities: [],
+      database: 'kanban.db',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
   ],

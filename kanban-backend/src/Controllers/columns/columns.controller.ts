@@ -7,7 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { ColumnDto } from 'src/DTO/column.dto';
+import { ColumnsDto } from 'src/DTO/columns.dto';
 
 @Controller('columns')
 export class ColumnsController {
@@ -17,17 +17,17 @@ export class ColumnsController {
   }
 
   @Get(':id')
-  findColumnByID(@Param('id') id: string) {
+  findColumnByID(@Param('id') id: number) {
     return `This action returns a #${id} column`;
   }
 
   @Post()
-  createColumn(@Body() newColumn: ColumnDto) {
+  createColumn(@Body() newColumn: ColumnsDto) {
     return { message: 'This action adds a new column', column: newColumn };
   }
 
   @Patch(':id')
-  updateColumn(@Param('id') id: string, @Body() newColumn: ColumnDto) {
+  updateColumn(@Param('id') id: number, @Body() newColumn: ColumnsDto) {
     return {
       message: `This action updates a #${id} column`,
       column: newColumn,
@@ -35,7 +35,7 @@ export class ColumnsController {
   }
 
   @Delete(':id')
-  deleteColumn(@Param('id') id: string) {
+  deleteColumn(@Param('id') id: number) {
     return `This action deletes a #${id} column`;
   }
 }

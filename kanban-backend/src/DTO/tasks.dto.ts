@@ -11,5 +11,5 @@ export class TasksDto {
 
   @IsUUID()
   @IsOptional()
-  columnId?: number;
+  columnId?: string;
 }

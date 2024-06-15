@@ -12,5 +12,5 @@ export class Tasks {
   description: string;
 
   @Column({ nullable: true })
-  columnId: number;
+  columnId: string;
 }

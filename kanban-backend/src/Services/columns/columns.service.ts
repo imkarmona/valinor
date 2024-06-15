@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ColumnsDto } from 'src/DTO/columns.dto';
-import { Columns } from 'src/Entities/columns.entity';
+import { ColumnsDto } from '../../DTO/columns.dto';
+import { Columns } from '../../Entities/columns.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

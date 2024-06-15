@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { ColumnsDto } from 'src/DTO/columns.dto';
-import { ColumnsService } from 'src/Services/columns/columns.service';
+import { ColumnsDto } from '../../DTO/columns.dto';
+import { ColumnsService } from '../../Services/columns/columns.service';
 
 @Controller('columns')
 export class ColumnsController {

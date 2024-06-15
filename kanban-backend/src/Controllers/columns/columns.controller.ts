@@ -9,7 +9,9 @@ import {
 } from '@nestjs/common';
 import { ColumnsDto } from '../../DTO/columns.dto';
 import { ColumnsService } from '../../Services/columns/columns.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('columns')
 @Controller('columns')
 export class ColumnsController {
   constructor(private readonly columnService: ColumnsService) {}

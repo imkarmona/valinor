@@ -20,7 +20,7 @@ export class TasksService {
     return await this.tasksRepository.save(task);
   }
 
-  async update(id: number, taskDto: TasksDto): Promise<Tasks> {
+  async updateTask(id: string, taskDto: TasksDto): Promise<Tasks> {
     const task = await this.tasksRepository.findOne({ where: { id } });
     if (!task) {
       throw new Error('Task not found');
@@ -33,15 +33,15 @@ export class TasksService {
     return await this.tasksRepository.save(task);
   }
 
-  async findAll(): Promise<Tasks[]> {
+  async findAllTasks(): Promise<Tasks[]> {
     return await this.tasksRepository.find();
   }
 
-  async findOne(id: number): Promise<Tasks> {
+  async findOneTask(id: string): Promise<Tasks> {
     return await this.tasksRepository.findOne({ where: { id } });
   }
 
-  async removeTask(id: number): Promise<void> {
+  async removeTask(id: string): Promise<void> {
     await this.tasksRepository.delete(id);
   }
 }

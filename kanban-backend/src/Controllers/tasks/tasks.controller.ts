@@ -8,31 +8,34 @@ import {
   Post,
 } from '@nestjs/common';
 import { TasksDto } from 'src/DTO/tasks.dto';
+import { TasksService } from 'src/Services/tasks/tasks.service';
 
 @Controller('tasks')
 export class TasksController {
+  constructor(private readonly taskService: TasksService) {}
+
   @Get()
   findAllTasks() {
-    return 'This action returns all tasks';
+    return this.taskService.findAllTasks();
   }
 
   @Get(':id')
-  findTaskByID(@Param('id') id: number) {
-    return `This action returns a #${id} task`;
+  findTaskByID(@Param('id') id: string) {
+    return this.taskService.findOneTask(id);
   }
 
   @Post()
   createTask(@Body() newTask: TasksDto) {
-    return { message: 'This action adds a new task', task: newTask };
+    return this.taskService.createTask(newTask);
   }
 
   @Patch(':id')
-  updateTask(@Param('id') id: number, @Body() newTask: TasksDto) {
-    return { message: `This action updates a #${id} task`, task: newTask };
+  updateTask(@Param('id') id: string, @Body() newTask: TasksDto) {
+    return this.taskService.updateTask(id, newTask);
   }
 
   @Delete(':id')
-  deleteTask(@Param('id') id: number) {
-    return `This action removes a #${id} task`;
+  deleteTask(@Param('id') id: string) {
+    return this.taskService.removeTask(id);
   }
 }

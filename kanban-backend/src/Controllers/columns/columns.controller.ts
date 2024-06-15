@@ -8,34 +8,34 @@ import {
   Post,
 } from '@nestjs/common';
 import { ColumnsDto } from 'src/DTO/columns.dto';
+import { ColumnsService } from 'src/Services/columns/columns.service';
 
 @Controller('columns')
 export class ColumnsController {
+  constructor(private readonly columnService: ColumnsService) {}
+
   @Get()
   findAllColumns() {
-    return 'This action returns all columns';
+    return this.columnService.findAllColumns();
   }
 
   @Get(':id')
-  findColumnByID(@Param('id') id: number) {
-    return `This action returns a #${id} column`;
+  findColumnByID(@Param('id') id: string) {
+    return this.columnService.findOneColumn(id);
   }
 
   @Post()
   createColumn(@Body() newColumn: ColumnsDto) {
-    return { message: 'This action adds a new column', column: newColumn };
+    return this.columnService.createColumn(newColumn);
   }
 
   @Patch(':id')
-  updateColumn(@Param('id') id: number, @Body() newColumn: ColumnsDto) {
-    return {
-      message: `This action updates a #${id} column`,
-      column: newColumn,
-    };
+  updateColumn(@Param('id') id: string, @Body() newColumn: ColumnsDto) {
+    return this.columnService.updateColumn(id, newColumn);
   }
 
   @Delete(':id')
-  deleteColumn(@Param('id') id: number) {
-    return `This action deletes a #${id} column`;
+  deleteColumn(@Param('id') id: string) {
+    return this.columnService.removeColumn(id);
   }
 }

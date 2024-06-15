@@ -18,7 +18,7 @@ export class ColumnsService {
     return await this.columnsRepository.save(column);
   }
 
-  async updateColumn(id: number, columnsDto: ColumnsDto): Promise<Columns> {
+  async updateColumn(id: string, columnsDto: ColumnsDto): Promise<Columns> {
     const column = await this.columnsRepository.findOne({ where: { id } });
     if (!column) throw new Error('Column not found');
 
@@ -27,15 +27,15 @@ export class ColumnsService {
     return await this.columnsRepository.save(column);
   }
 
-  async findAll(): Promise<Columns[]> {
+  async findAllColumns(): Promise<Columns[]> {
     return await this.columnsRepository.find();
   }
 
-  async findOne(id: number): Promise<Columns> {
+  async findOneColumn(id: string): Promise<Columns> {
     return await this.columnsRepository.findOne({ where: { id } });
   }
 
-  async remove(id: number): Promise<void> {
+  async removeColumn(id: string): Promise<void> {
     await this.columnsRepository.delete(id);
   }
 }

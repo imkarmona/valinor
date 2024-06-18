@@ -1,1 +1,49 @@
-<p>task works!</p>
+<div class="task bg-white p-3 rounded-md shadow-sm mb-2 relative">
+  <div class="flex justify-between">
+    <div>
+      <h3 class="text-lg font-semibold">{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
+    </div>
+    <button (click)="toggleMenu()" class="text-gray-500">&#x22EE;</button>
+  </div>
+  <div
+    *ngIf="showMenu"
+    class="absolute right-0 bg-white border rounded shadow-lg mt-2"
+  >
+    <button
+      (click)="startEdit()"
+      class="block w-full text-left px-4 py-2 hover:bg-gray-200"
+    >
+      Edit
+    </button>
+    <button
+      (click)="deleteTask()"
+      class="block w-full text-left px-4 py-2 hover:bg-gray-200"
+    >
+      Delete
+    </button>
+  </div>
+  <div *ngIf="isEditing">
+    <input
+      type="text"
+      [(ngModel)]="editTitle"
+      placeholder="Título da Tarefa"
+      class="p-2 border rounded mb-2 w-full"
+    />
+    <input
+      type="text"
+      [(ngModel)]="editDescription"
+      placeholder="Descrição da Tarefa"
+      class="p-2 border rounded mb-2 w-full"
+    />
+    <button
+      (click)="saveEdit()"
+      class="bg-green-500 text-white p-2 rounded mr-2"
+    >
+      Save
+    </button>
+    <button (click)="cancelEdit()" class="bg-red-500 text-white p-2 rounded">
+      Cancel
+    </button>
+  </div>
+</div>

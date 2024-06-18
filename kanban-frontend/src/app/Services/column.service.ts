@@ -28,7 +28,7 @@ export class ColumnService {
     return this.http.patch<Column>(`${this.baseUrl}/${id}`, column);
   }
 
-  deleteColumn(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  deleteColumn(id: string): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/${id}`);
   }
 }

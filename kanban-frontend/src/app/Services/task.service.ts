@@ -28,7 +28,7 @@ export class TaskService {
     return this.http.patch<Task>(`${this.baseUrl}/${id}`, task);
   }
 
-  deleteTask(id: string): Observable<void>{
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  deleteTask(id: string): Observable<string>{
+    return this.http.delete<string>(`${this.baseUrl}/${id}`);
   }
 }

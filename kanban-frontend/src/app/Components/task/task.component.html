@@ -1,14 +1,14 @@
-<div class="task bg-white p-3 rounded-md shadow-sm mb-2 relative">
+<div class="task bg-white p-3 rounded-md shadow-sm mb-2 relative" cdkDrag>
   <div class="flex justify-between">
     <div>
       <h3 class="text-lg font-semibold">{{ task.title }}</h3>
-      <p>{{ task.description }}</p>
+      <p class="text-wrap max-w-64 break-all">{{ task.description }}</p>
     </div>
     <button (click)="toggleMenu()" class="text-gray-500">&#x22EE;</button>
   </div>
   <div
     *ngIf="showMenu"
-    class="absolute right-0 bg-white border rounded shadow-lg mt-2"
+    class="absolute right-0 z-10 bg-white border rounded shadow-lg mt-2"
   >
     <button
       (click)="startEdit()"
@@ -23,27 +23,29 @@
       Delete
     </button>
   </div>
-  <div *ngIf="isEditing">
+  <div *ngIf="isEditing" class="max-w-64">
     <input
       type="text"
       [(ngModel)]="editTitle"
-      placeholder="Título da Tarefa"
+      placeholder="Task Title"
       class="p-2 border rounded mb-2 w-full"
     />
     <input
       type="text"
       [(ngModel)]="editDescription"
-      placeholder="Descrição da Tarefa"
+      placeholder="Task Description"
       class="p-2 border rounded mb-2 w-full"
     />
-    <button
-      (click)="saveEdit()"
-      class="bg-green-500 text-white p-2 rounded mr-2"
-    >
-      Save
-    </button>
-    <button (click)="cancelEdit()" class="bg-red-500 text-white p-2 rounded">
-      Cancel
-    </button>
+    <div class="flex flex-row gap-2">
+      <button (click)="cancelEdit()" class="bg-red-500 text-white p-2 rounded w-full">
+        Cancel
+      </button>
+      <button
+        (click)="saveEdit()"
+        class="bg-green-500 text-white p-2 rounded w-full"
+      >
+        Save
+      </button>
+    </div>
   </div>
 </div>

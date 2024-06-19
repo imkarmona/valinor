@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ColumnService } from '../../Services/column.service';
-import { TaskService } from '../../Services/task.service';
 import { Column } from '../../Models/column.model';
 import { Task } from '../../Models/task.model';
+import { ColumnService } from '../../Services/column.service';
+import { TaskService } from '../../Services/task.service';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
@@ -40,11 +45,11 @@ export class HomeComponent implements OnInit {
     return this.tasks.filter((task) => task.columnId === columnId);
   }
 
-  openModal() {
+  openModal(): void {
     this.showModal = true;
   }
 
-  closeModal() {
+  closeModal(): void {
     this.showModal = false;
   }
 
@@ -63,5 +68,27 @@ export class HomeComponent implements OnInit {
     this.columnService.deleteColumn(columnId).subscribe(() => {
       this.columns = this.columns.filter((column) => column.id !== columnId);
     });
+  }
+
+  dropTask(event: CdkDragDrop<Task[]>, columnId: string): void {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      const task: Task = event.previousContainer.data[event.previousIndex];
+      task.columnId = columnId;
+      this.taskService.updateTask(task.id, task).subscribe(() => {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+        this.loadTasks();
+      });
+    }
   }
 }

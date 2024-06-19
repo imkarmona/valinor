@@ -6,7 +6,7 @@ import { ColumnService } from '../../Services/column.service';
 
 @Component({
   selector: 'app-column',
-  templateUrl: './column.component.html',
+  templateUrl: './column.component.html'
 })
 export class ColumnComponent {
   @Input() column!: Column;
@@ -44,12 +44,6 @@ export class ColumnComponent {
         this.taskCreated.emit();
       });
     }
-  }
-
-  deleteColumn(): void {
-    this.columnService.deleteColumn(this.column.id).subscribe(() => {
-      this.columnDeleted.emit(this.column.id);
-    });
   }
 
   deleteTask(taskId: string): void {

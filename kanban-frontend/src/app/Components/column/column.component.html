@@ -1,30 +1,8 @@
-<div class="column bg-gray-200 p-4 rounded-lg shadow-md">
-  <h2 class="text-xl font-bold">{{ column.title }}</h2>
-  <button (click)="deleteColumn()" class="text-red-500 hover:text-red-700">
-    <svg
-      class="w-6 h-6"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"
-      ></path>
-    </svg>
-  </button>
-  <div class="mb-2">
-    <button
-      (click)="toggleTaskForm()"
-      class="bg-blue-500 text-white p-2 rounded"
-    >
-      Add Task
-    </button>
+<div class="column bg-gray-200 p-4 rounded-lg shadow-md min-w-80">
+  <div *ngFor="let task of tasks">
+    <app-task [task]="task" (taskDeleted)="deleteTask($event)"></app-task>
   </div>
-  <div *ngIf="showTaskForm" class="mb-4">
+  <div *ngIf="showTaskForm" class="mb-4 flex flex-col gap-2">
     <input
       type="text"
       [(ngModel)]="newTaskTitle"
@@ -35,16 +13,29 @@
       type="text"
       [(ngModel)]="newTaskDescription"
       placeholder="Descrição da Tarefa"
-      class="p-2 border rounded ml-2"
+      class="p-2 border rounded"
     />
-    <button
-      (click)="createTask()"
-      class="bg-green-500 text-white p-2 rounded ml-2"
-    >
-      Create Task
-    </button>
+    <div class="flex gap-2 w-full">
+      <button
+        (click)="toggleTaskForm()"
+        class="bg-red-500 text-white p-2 rounded w-full"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="createTask()"
+        class="bg-green-500 text-white p-2 rounded w-full"
+      >
+        Create Task
+      </button>
+    </div>
   </div>
-  <div *ngFor="let task of tasks">
-    <app-task [task]="task" (taskDeleted)="deleteTask($event)"></app-task>
+  <div class="mb-2">
+    <button
+      (click)="toggleTaskForm()"
+      class="bg-blue-500 text-white p-2 rounded w-full"
+    >
+      Add Task
+    </button>
   </div>
 </div>

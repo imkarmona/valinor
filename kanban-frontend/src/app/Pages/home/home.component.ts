@@ -3,6 +3,7 @@ import { Column } from '../../Models/column.model';
 import { Task } from '../../Models/task.model';
 import { ColumnService } from '../../Services/column.service';
 import { TaskService } from '../../Services/task.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   tasks: Task[] = [];
   showModal: boolean = false;
   newColumnTitle: string = '';
+  faTrash = faTrash;
 
   constructor(
     private columnService: ColumnService,
